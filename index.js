@@ -23,16 +23,16 @@ function init() {
     const GLTFloader = new GLTFLoader();
     GLTFloader.setPath('./').load('House.glb',(gltf) => {
         document.getElementById('loading').style.display = 'none'; // 隱藏載入畫面
+        console.log(gltf.scene);
         model = gltf.scene.children[0]
         scene.add(gltf.scene)
         model.position.y = 0
 
-        console.log(gltf.scene)
     }, (xhr) => {
         if (xhr.lengthComputable) {
             const percentComplete = (xhr.loaded / xhr.total) * 100;
             document.getElementById('loading_progress').value = percentComplete;
-            document.getElementById('loading_percentage').textContent = `${percentComplete.toFixed(2)}%`;
+            document.getElementById('loading_percentage').textContent = progress > 100 ? '完成!' : `${progress.toFixed(2)}%`;
         } else {
             console.log(`已載入 ${xhr.loaded} bytes`);
         }
