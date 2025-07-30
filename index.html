@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh_TW">
+<head>
+    <title>Three</title>
+    <style>
+        *{margin: 0;}
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .joystick-zone {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+        }
+
+        #joystick-left {
+            left: 200px;
+            bottom: 10vh;
+        }
+
+        #joystick-right {
+            right: 200px;
+            bottom: 10vh;
+        }
+
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./node_modules/three/build/three.module.js",
+                "GLTFLoader": "./node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+                "Stats": "./node_modules/three/examples/jsm/libs/stats.module.js"
+            }
+        }
+    </script>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.9.0/dist/nipplejs.min.js"></script>
+    <div class="joystick-zone" id="joystick-left"></div>
+    <div class="joystick-zone" id="joystick-right"></div>
+    <div id="loading" style="width: 100%; height: 100%; position: absolute; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 1); z-index: 1000;">
+        <h1 style="color: #fff; width: 100%; text-align: center;">加載房屋模型中...</h1>
+        <progress id="loading_progress" value="0" max="100" style="width: 90%; max-width: 500px;margin-top: 16px;"></progress>
+        <p id="loading_percentage" style="color: #fff;">0%</p>
+    </div>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
