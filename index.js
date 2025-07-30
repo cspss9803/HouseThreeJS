@@ -32,7 +32,7 @@ function init() {
         if (xhr.lengthComputable) {
             const percentComplete = (xhr.loaded / xhr.total) * 100;
             document.getElementById('loading_progress').value = percentComplete;
-            document.getElementById('loading_percentage').textContent = `${percentComplete.toFixed()}%`;
+            document.getElementById('loading_percentage').textContent = `${percentComplete.toFixed(2)}%`;
         } else {
             console.log(`已載入 ${xhr.loaded} bytes`);
         }
