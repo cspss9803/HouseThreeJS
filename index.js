@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import { GLTFLoader } from 'GLTFLoader'
-import Stats from 'Stats'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import Stats from 'three/addons/libs/stats.module.js'
 
 let model, scene, renderer, camera, stats;
 
