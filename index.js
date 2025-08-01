@@ -118,8 +118,8 @@ function animate() {
     const delta = ( time - prevTime ) / 1000;
 
     // 移動速度與旋轉速度
-    const speed = 150.0 * delta;
-    const rotationSpeed = 1.5 * delta;
+    const speed = 50.0 * delta;
+    const rotationSpeed = 0.5 * delta;
 
     // 移動攝影機（用 yawObject 控制位置）
     if (moveVector.y !== 0 || moveVector.x !== 0) {
