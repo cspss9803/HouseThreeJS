@@ -1,15 +1,12 @@
 import * as THREE from 'three'
-import { InstancedMesh, Object3D } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import Stats from 'three/addons/libs/stats.module.js'
-import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js'
 
 let scene, renderer, camera, stats;
 
 let yawObject, pitchObject;
 let moveVector = { x: 0, y: 0 };
 let rotateVector = { x: 0, y: 0 };
-
 
 let prevTime = performance.now();
 
@@ -29,66 +26,6 @@ function init() {
         scene.add(gltf.scene)
 
         console.log(scene)
-
-    //     for (const child of gltf.scene.children) {
-    //         if (!child.isMesh) {
-    //             gltf.scene.remove(child);
-    //             continue;
-    //         }
-    //     }
-
-    //     const geometryMaterialMap = new Map();
-    //     const dummy = new Object3D();
-
-    //     for (const child of gltf.scene.children) {
-    //         if (!child.isMesh) continue;
-
-    //         const key = `${child.geometry.uuid}_${child.material?.name || 'UnnamedMaterial'}`;
-            
-    //         if (!geometryMaterialMap.has(key)) {
-    //             geometryMaterialMap.set(key, {
-    //                 geometry: child.geometry,
-    //                 material: child.material,
-    //                 transforms: []
-    //             });
-    //         }
-
-    //         geometryMaterialMap.get(key).transforms.push(child.matrixWorld);
-    //     }
-
-
-    //     for (const { geometry, material, transforms } of geometryMaterialMap.values()) {
-    //         const mesh = new InstancedMesh(geometry, material, transforms.length);
-    //         for (let i = 0; i < transforms.length; i++) {
-    //             dummy.matrix.copy(transforms[i]);
-    //             dummy.matrix.decompose(dummy.position, dummy.quaternion, dummy.scale);
-    //             dummy.updateMatrix();
-    //             mesh.setMatrixAt(i, dummy.matrix);
-    //         }
-    //         scene.add(mesh);
-    //     }
-
-    //     gltf.scene.clear(); // 清除 gltf 的容器
-    //     scene.remove(scene.children[0]) // 移除這個奇怪的物件
-    //     scene.remove(gltf.scene);
-        
-    //     console.log(scene)
-
-    //     const exporter = new GLTFExporter();
-    //     exporter.parse(scene, (result) => {
-    //     const output = new Blob(
-    //         [result instanceof ArrayBuffer ? result : JSON.stringify(result)],
-    //         { type: result instanceof ArrayBuffer ? 'model/gltf-binary' : 'application/json' }
-    //     );
-    //     const link = document.createElement('a');
-    //     link.href = URL.createObjectURL(output);
-    //     link.download = 'optimized.glb';
-    //     link.click();
-    // }, {
-    //     binary: true,
-    //     includeCustomExtensions: true // 🔑 一定要加！
-    // });
-
     }, (xhr) => {
         if (xhr.lengthComputable) {
             const percentComplete = (xhr.loaded / xhr.total) * 100;
@@ -207,14 +144,14 @@ function animate() {
     }
 
     // 上下轉動（旋轉 X 軸）
-    if (rotateVector.y !== 0) {
-        pitchObject.rotation.x += rotateVector.y * rotationSpeed;
+    // if (rotateVector.y !== 0) {
+    //     pitchObject.rotation.x += rotateVector.y * rotationSpeed;
 
-        // 限制俯仰角在 [-π/2, π/2]
-        const maxPitch = Math.PI / 2;
-        const minPitch = -Math.PI / 2;
-        pitchObject.rotation.x = Math.max(minPitch, Math.min(maxPitch, pitchObject.rotation.x));
-    }
+    //     // 限制俯仰角在 [-π/2, π/2]
+    //     const maxPitch = Math.PI / 2;
+    //     const minPitch = -Math.PI / 2;
+    //     pitchObject.rotation.x = Math.max(minPitch, Math.min(maxPitch, pitchObject.rotation.x));
+    // }
 
     prevTime = time;
     renderer.render( scene, camera );
